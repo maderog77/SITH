@@ -1,0 +1,3 @@
+Hacer una flag para look y cuando se verdad poner los items en la habitacion.
+
+Arregalr problema si la dirreccion en Player::move() no es valida.

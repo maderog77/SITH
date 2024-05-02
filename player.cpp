@@ -4,6 +4,7 @@
 #include <string>
 #include "map.h"
 #include <iostream>
+#include <list>
 
 Player::Player(){
 	this->health=100;
@@ -25,9 +26,12 @@ Location* Player::getLocation(){
 }
 
 void Player::printInventory(){
+	int i=1;
 	for(Item* item:this->inventory){
-		std::cout<<item->getName()<<std::endl;
+		std::cout<<i<<":"<<item->getName()<<std::endl;
+		i++;
 	}
+	std::cout<<std::endl;
 }
 
 void Player::setName(std::string name){
@@ -55,11 +59,13 @@ void Player::move(){
                 for(auto it=exits.begin();it!=exits.end();it++){
                         if(d==it->first){
                                 valid=true;
-                        }else{
-                                std::cout<<"Invalid direction. Please try again."<<std::endl;
                         }
                 }
-        }
+		if(valid==false){
+			std::cout<<"Invalid direction. Please try again."<<std::endl;
+
+        	}	
+	}
 
 
         for(auto it=exits.begin();it!=exits.end();it++){
@@ -67,8 +73,14 @@ void Player::move(){
                         this->location=it->second;
                 }
         }
+}
 
-
+void Player::addItem(std::list<Item*> linventory,int pos){
+	std::list<Item*>::iterator it=linventory.begin();
+	for(int i=0;i<pos;i++){
+		it++;
+	}
+	this->inventory.push_back(*it);
 }
 
 

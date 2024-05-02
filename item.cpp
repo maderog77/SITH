@@ -1,6 +1,14 @@
 #include "item.h"
 #include <string>
 
+Item::Item(){}
+
+Item::Item(std::string name, std::string description, float damage){
+	this->name = name;
+	this->description = description;
+	this->damage = damage;
+}
+
 std::string Item::getName(){
 	return this->name;
 }

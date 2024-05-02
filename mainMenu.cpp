@@ -5,6 +5,11 @@
 #include <map>
 #include "player.h"
 #include "map.h"
+#include <jsoncpp/json/json.h>
+#include <fstream>
+#include <jsoncpp/json/value.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/writer.h>
 
 MainMenu::MainMenu(){}
 
@@ -45,9 +50,24 @@ Game* MainMenu::displayMenu(){
 				       flag=true;
 			       }break;
 			case '2':{
-					 std::cout<<"Esta parte esta en desarrollo"<<std::endl;//Deberea ser capaz de manejar files de alguna manera
+					 if(!std::ifstream("save.json")){
+						 std::cout<<"No saved game found"<<std::endl;
+						 break;
+					 }
+					 Map* gameMap=new Map();
+					 Player* player=new Player();
+					 std::ifstream file("save.json");
+					 Json::Value actualJson;
+					 Json::Reader reader;
+
+					 reader.parse(file,actualJson);
+					 player->setName(actualJson["player"]["name"].asString());
+					 player->setLocation(gameMap->getLocationbyName(actualJson["player"]["location"].asString()));
+					 Game* tempGame=new Game(gameMap->getMap(),player);
+					 this->game=tempGame;
 					 flag=true;
-					 this->mainMenuFlag=false;
+					 
+
 				 }break;
 			case '3':{
 					 std::cout<<"Goodbye!"<<std::endl;

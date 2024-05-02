@@ -42,8 +42,12 @@ int main(){
 		cout<<"What would you like to do?"<<endl;
 		cout<<"1.Move"<<endl;
 		cout<<"2.Look"<<endl;
-		cout<<"3.Inventory"<<endl;
-		cout<<"4.Save and Exit"<<endl;
+		if(game->getPlayer()->getLocation()->getItemsFlag()==true){ //remove this selection is messin w the input
+			cout<<"3.Take Item"<<endl;
+		}
+		
+		cout<<"4.Inventory"<<endl;
+		cout<<"5.Save and Exit"<<endl;
 		char choice;
 		cin>>choice;
 		cin.ignore();
@@ -52,14 +56,25 @@ int main(){
 			case '1':{
 				game->getPlayer()->move();
 				cout<<"\n"<<"You are now at: "<<game->getPlayer()->getLocation()->getDescription()<<endl;
-					 //flag=true;
 				 }break;
 			case '2':{
-				cout<<game->getPlayer()->getLocation()->getDescription()<<endl;
-				cout<<endl;
-		       		//Por ahora lo dejo con la descripcion del lugar pero despues le agrego los items
+				game->getPlayer()->getLocation()->printInventory();	
+				 }break;
+			case '3':{
+				cout<<"Which item would you like to take?"<<endl;
+				 int itemChoice;
+				 cin>>itemChoice;
+				 cin.ignore();
+				 game->getPlayer()->addItem(game->getPlayer()->getLocation()->getInventory(),itemChoice-1);	 
+				 game->getPlayer()->getLocation()->removeItem(itemChoice-1);
 				 }break;
 			case '4':{
+					 
+					 cout<<"You have the following items in your inventory:"<<endl;
+					 game->getPlayer()->printInventory();
+				 }break;
+
+			case '5':{
 					 cout<<"Saving game.."<<endl;
 					cout<<"Goodbye!"<<endl;
 					flag=true;

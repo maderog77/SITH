@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "location.h"
+#include "item.h"
 
 Map::Map(){
 	 Location* entrance=new Location("Entrance","You are at the entrace of a spooky house");
@@ -23,6 +24,22 @@ Map::Map(){
 	 kitchen->setExits("west",livingRoom);
 	 kitchen->setExits("north",backyard);
 	 backyard->setExits("south",kitchen);
+
+	 //add items to locations
+	 Item* key=new Item("key","A key to unlock the door",0);
+	 entrance->addItem(key);
+	 Item* remote=new Item("remote","A remote to turn on the TV",0);
+	 livingRoom->addItem(remote);
+	 Item* knife=new Item("knife","A knife to cut things",10);
+	 kitchen->addItem(knife);
+	 Item* matches=new Item("matches","a warm and medium light",0);
+	 kitchen->addItem(matches);
+	 Item* flashlight=new Item("flashlight","A flashlight to see in the dark",0);
+	 bedroom->addItem(flashlight);
+	 Item* toothbrush=new Item("toothbrush","A toothbrush to brush your teeth",0);
+	 bathroom->addItem(toothbrush);
+	 Item* machete=new Item("machete","A machete to cut down bushes or something else",20);
+	 backyard->addItem(machete);
 
 	 gameMap.insert({entrance,entrance->getExits()});
 	 gameMap.insert({livingRoom,livingRoom->getExits()});

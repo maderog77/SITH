@@ -8,6 +8,8 @@ class Item{
 		std::string description;
 		float damage;
 	public:
+		Item();
+		 Item(std::string name, std::string description, float damage);
 		std::string getName();
 		std::string getDescription();
 		float getDamage();

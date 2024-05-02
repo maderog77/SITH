@@ -24,6 +24,7 @@ class Player {
 		void setHealth(float health);
 		void setLocation(Location* location);
 		void move();
+		void addItem(std::list<Item*> linventory,int pos);
 };
 
 

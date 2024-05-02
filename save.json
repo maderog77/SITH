@@ -1,0 +1,18 @@
+{
+ 
+    "player": {
+      "name": "Gabriel",
+      "health": 100,
+      "location": "Backyard",
+      "inventory": [
+        {
+          "id": 1,
+          "name": "key",
+          "description": "A key to open the door",
+          "damage": 0
+        }
+      ]
+    }
+  
+}
+

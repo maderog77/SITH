@@ -19,12 +19,15 @@ class Player {
 		float getHealth();
 		Location* getLocation();
 		void printInventory();
+		Item* getItembyName(std::string name);
+		std::list<Item*> getInventory();
 
 		void setName(std::string name);
 		void setHealth(float health);
 		void setLocation(Location* location);
 		void move();
 		void addItem(std::list<Item*> linventory,int pos);
+		void addItembyName(Item* item);
 };
 
 

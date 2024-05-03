@@ -34,6 +34,19 @@ void Player::printInventory(){
 	std::cout<<std::endl;
 }
 
+Item* Player::getItembyName(std::string name){
+	for(Item* item:this->inventory){
+		if(item->getName()==name){
+			return item;
+		}
+	}
+	return NULL;
+}
+
+std::list<Item*> Player::getInventory(){
+	return this->inventory;
+}
+
 void Player::setName(std::string name){
 	this->name=name;
 }
@@ -83,4 +96,6 @@ void Player::addItem(std::list<Item*> linventory,int pos){
 	this->inventory.push_back(*it);
 }
 
-
+void Player::addItembyName(Item* item){
+	this->inventory.push_back(item);
+}

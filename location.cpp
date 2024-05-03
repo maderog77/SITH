@@ -48,6 +48,15 @@ bool Location::getItemsFlag(){
 	return this->itemsFlag;
 }
 
+Item* Location::getItembyName(std::string name){
+	for(auto i:this->inventory){
+		if(i->getName()==name){
+			return i;
+		}
+	}
+	return NULL;
+}
+
 
 void Location::setExits(std::string direction, Location* l){
 	this->exits.insert({direction,l});
@@ -57,7 +66,7 @@ void Location::addItem(Item* i){
 	this->inventory.push_back(i);
 }
 
-void Location::removeItem(int pos){//terminar esta funcion
+void Location::removeItem(int pos){
 	std::list<Item*>::iterator it = this->inventory.begin();
 	for(int i=0;i>pos;i++){
 		it++;

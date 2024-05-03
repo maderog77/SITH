@@ -54,8 +54,6 @@ std::map<Location*,std::map<std::string,Location*>> Map::getMap(){
 }
 
 void Map::setMap(Location* l, std::map<std::string,Location*> exits){
-	//this->gameMap->insert(std::pair<Location*,std::map<std::string,Location*>>(l,exits));
-	//this->gameMap[l] = exits;
 	gameMap.insert({l,exits});
 }
 

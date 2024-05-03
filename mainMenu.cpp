@@ -63,6 +63,16 @@ Game* MainMenu::displayMenu(){
 					 reader.parse(file,actualJson);
 					 player->setName(actualJson["player"]["name"].asString());
 					 player->setLocation(gameMap->getLocationbyName(actualJson["player"]["location"].asString()));
+					 std::list<std::string> items;
+					 for(int i=0;i<actualJson["player"]["items"].size();i++){   //Iterator problem
+						 items.push_back(actualJson["player"]["items"][i].asString());
+					 
+					 }
+
+					 for(auto it:items){      //Iterator problem doesnt load the items
+						 player->addItembyName(player->getLocation()->getItembyName(it)); 
+						 std::cout<<it<<std::endl;
+					 }
 					 Game* tempGame=new Game(gameMap->getMap(),player);
 					 this->game=tempGame;
 					 flag=true;

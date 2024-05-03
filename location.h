@@ -23,6 +23,7 @@ class Location {
 		std::list<Item*> getInventory();
 		void printInventory();
 		bool getItemsFlag();
+		Item* getItembyName(std::string name);
 
 
 		void setExits(std::string direction, Location* l);

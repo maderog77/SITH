@@ -9,6 +9,11 @@
 #include <ctime>
 #include <unistd.h>
 #include "mainMenu.h"
+#include <jsoncpp/json/json.h>
+#include <fstream>
+#include <jsoncpp/json/writer.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/value.h>
 using namespace std;
 
 int main(){
@@ -18,7 +23,6 @@ int main(){
 		return 0;
 	}
 	
-	//AQUI continua el juegp
 	cout<<"Loading";
 	cout.flush();
 	for(int i=0;i<4;i++){
@@ -42,7 +46,7 @@ int main(){
 		cout<<"What would you like to do?"<<endl;
 		cout<<"1.Move"<<endl;
 		cout<<"2.Look"<<endl;
-		if(game->getPlayer()->getLocation()->getItemsFlag()==true){ //remove this selection is messin w the input
+		if(game->getPlayer()->getLocation()->getItemsFlag()==true){ 
 			cout<<"3.Take Item"<<endl;
 		}
 		
@@ -75,8 +79,24 @@ int main(){
 				 }break;
 
 			case '5':{
+					 
+					 Json::Value save;
+					 Json::Value vec(Json::arrayValue);
+					 list<Item*> inventory=game->getPlayer()->getInventory();
+					 for(list<Item*>::iterator it=inventory.begin();it!=inventory.end();it++){
+						 vec.append((*it)->getName());
+					 }
+					 save["player"]["name"]=game->getPlayer()->getName();
+					 save["player"]["health"]=game->getPlayer()->getHealth();
+					 save["player"]["location"]=game->getPlayer()->getLocation()->getName();
+					 save["player"]["inventory"]=vec;
+
+					 ofstream file("save.json");
+					 file<<save;
+					 file.close();
+					 cout<<endl;
 					 cout<<"Saving game.."<<endl;
-					cout<<"Goodbye!"<<endl;
+					cout<<"Goodbye!"<<endl;//Needs more work
 					flag=true;
 				 }break;
 			default:{

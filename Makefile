@@ -26,4 +26,4 @@ ew: main.o game.o map.o player.o item.o location.o mainMenu.o
 	g++ -o ew main.o game.o map.o player.o item.o location.o mainMenu.o -ljsoncpp
 
 clean:
-	@rm -f *.o ew
+	@rm -f *.o *.json ew

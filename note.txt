@@ -1,0 +1,3 @@
+Theres one problem when loading the item into the players inventory. Item wont be added and also the items in the locations will not be removed.
+
+Ive trying to solve it but jsoncpp labary is definitely not the best.(Maybe i'm having skill issues)

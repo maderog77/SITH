@@ -1,2 +1,0 @@
-Tengo que empezar con lo de guardar la partida en el la opcion de switch en main.cpp
-*/

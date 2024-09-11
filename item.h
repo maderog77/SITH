@@ -9,6 +9,7 @@ class Item{
 		float damage;
 	public:
 		Item();
+		Item(std::string name,float damage);
 		 Item(std::string name, std::string description, float damage);
 		std::string getName();
 		std::string getDescription();

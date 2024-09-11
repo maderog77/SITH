@@ -3,6 +3,11 @@
 
 Item::Item(){}
 
+Item::Item(std::string name,float damage){
+	this->name = name;
+	this->damage = damage;
+}
+
 Item::Item(std::string name, std::string description, float damage){
 	this->name = name;
 	this->description = description;

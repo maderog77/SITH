@@ -35,12 +35,13 @@ void Player::printInventory(){
 }
 
 Item* Player::getItembyName(std::string name){
-	for(Item* item:this->inventory){
-		if(item->getName()==name){
-			return item;
+	Item* item;
+	for(auto i:this->inventory){
+		if(i->getName()==name){
+			item=i;	
 		}
 	}
-	return NULL;
+	return item;
 }
 
 std::list<Item*> Player::getInventory(){

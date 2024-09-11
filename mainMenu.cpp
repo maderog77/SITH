@@ -63,14 +63,19 @@ Game* MainMenu::displayMenu(){
 					 reader.parse(file,actualJson);
 					 player->setName(actualJson["player"]["name"].asString());
 					 player->setLocation(gameMap->getLocationbyName(actualJson["player"]["location"].asString()));
+					 //Json::Value items=actualJson["player"]["inventory"];
+
 					 std::list<std::string> items;
-					 for(int i=0;i<actualJson["player"]["items"].size();i++){   //Iterator problem
-						 items.push_back(actualJson["player"]["items"][i].asString());
+					 for(int i=0;i<actualJson["player"]["inventory"].size();i++){   
+						 std::string item=actualJson["player"]["inventory"][i].asString();
+						 items.push_back(item);
 					 
 					 }
 
-					 for(auto it:items){      //Iterator problem doesnt load the items
-						 player->addItembyName(player->getLocation()->getItembyName(it)); 
+					 for(auto it:items){      //Not always work, probably i have to create the item here and the push
+								  //into the player inventory
+						 Item* tempItem=new Item(it,0);
+						 player->addItembyName(tempItem);
 						 std::cout<<it<<std::endl;
 					 }
 					 Game* tempGame=new Game(gameMap->getMap(),player);

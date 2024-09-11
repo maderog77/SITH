@@ -49,12 +49,13 @@ bool Location::getItemsFlag(){
 }
 
 Item* Location::getItembyName(std::string name){
+	Item* item;
 	for(auto i:this->inventory){
 		if(i->getName()==name){
-			return i;
+			item=i;
 		}
 	}
-	return NULL;
+	return item;
 }
 
 
